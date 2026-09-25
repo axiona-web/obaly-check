@@ -357,7 +357,7 @@ footer{border-top:1px solid var(--rule);padding:22px 0 40px;font-size:13.5px;col
 
   /* Sem vlož URL webhooku (Make.com, Formspree, vlastný endpoint).
      Kým je prázdny, kontakt sa neodošle a stránka to férovo povie. */
-  var FORM_ENDPOINT = "https://hook.eu1.make.com/wieuyfyshvao4m6udbs3a69wb12lzlu3";
+  var FORM_ENDPOINT = "https://hook.eu1.make.com/2guic4tnnrc6ci6n3mqmjveaw1vhw1v8";
 
   var form   = document.getElementById("chk");
   var res    = document.getElementById("res");
@@ -465,7 +465,16 @@ footer{border-top:1px solid var(--rule);padding:22px 0 40px;font-size:13.5px;col
       who: state ? state.who : null,
       estimateLow: state ? state.low : null,
       estimateHigh: state ? state.high : null,
-      ts: new Date().toISOString()
+      ts: new Date().toISOString(),
+      // spoločné polia pre tabuľku axiona-dopyty
+      zdroj: "obaly-check",
+      cas: new Date().toLocaleString("sk-SK"),
+      meno: "", firma: "", telefon: "",
+      web: shop,
+      sprava: "Krajiny: " + (state ? state.countries.join(", ") : "—") +
+              " | Sídlo/sklad: " + (state ? state.base : "—") +
+              " | Rieši: " + (state ? state.who : "—") +
+              (state ? " | Odhad: " + state.low + "–" + state.high + " €" : "")
     };
 
     if(!FORM_ENDPOINT){
